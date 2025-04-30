@@ -1,1 +1,3 @@
-# browseract
+# browseract.ai
+
+AI agent is coming soon...
