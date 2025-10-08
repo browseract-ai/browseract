@@ -1,0 +1,72 @@
+"""
+Description:
+Start a new workflow task and return a task ID for progress tracking.
+
+Documentation:
+https://www.browseract.com/reception/integrations/api-workflow
+"""
+
+import traceback
+import requests
+
+def main():
+    # API Key Required for API Call, generated from: https://www.browseract.com/reception/integrations
+    authorization = "app-abcdefghijklmn"
+
+    # workflow ID, you can copy it from: https://www.browseract.com/reception/workflow-list
+    workflow_id = 1234567890
+
+    try:
+        headers = {
+            "Authorization": f"Bearer {authorization}"
+        }
+        
+        # define API parameters
+        data = {
+            # The workflow ID used to create and spawn a new task.
+            "workflow_id": workflow_id,
+            
+            # Parameters entered when running a workflow task, 
+            # which are defined by you when orchestrate the workflow
+            "input_parameters": [{
+                "name": "target_url",
+                "value": "https://www.google.com/search?q=iphone17",
+            },{
+                "name": "product_limit",
+                "value": "10",
+            }],
+            
+            # Specify whether a profile_id should be returned in the response upon successful task submission. 
+            # The profile stores browser session data, including cookies and other browsing state, that is generated during task execution.
+            "save_browser_data": True,
+            
+            # The browser profile to use for this workflow task. 
+            # Browser profiles store session data, such as cookies, and other browsing state, that can be reused across tasks.
+            # Note: if profile_id isn't provided, a random one will be generated during task execution.
+            "profile_id": ""
+        }
+        
+        api_url = "https://api.browseract.com/v2/workflow/run-task"
+        response = requests.post(
+            api_url, json=data, headers=headers
+        )
+
+        if response.status_code == 200:
+            # success example:
+            # {'id': '12425895140306551', 'profileId': 'abcde'}
+            print("api-call-ok:", response.json())
+            
+            task_id = response.json()["id"]
+            # Polling the task status until the task is completed or timed out.
+            # Please refer to 3.get_task.py or  4.get_task_status.py
+        else:
+            # error example:
+            # {'code': 401, 'msg': 'Invalid authorization', 'data': None, 'ts': 1759917250113, 'time': '2025-10-08 09:54:10', 'traceId': 'bcdef'}
+            # {'code': 10118, 'msg': 'Running tasks number exceeds.', 'data': None, 'ts': 1759917310153, 'time': '2025-10-08 09:55:10', 'traceId': 'cdefg'}
+            print("api-call-error:", response.json())
+    except:
+        error = traceback.format_exc()
+        print(f"run-error: {error}")
+
+if __name__ == "__main__":
+    main()
