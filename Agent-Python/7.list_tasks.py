@@ -1,11 +1,12 @@
 """
 Description:
-Returns a paginated list of all Workflows, sorted by creation time.
+Return a paginated list of all tasks, sorted by creation time. 
+Each task includes basic information such as status and creation time.
 
 Documentation:
-https://www.browseract.com/reception/integrations/api-workflow
+https://www.browseract.com/reception/integrations/api-agent
 
-curl -X GET 'https://api.browseract.com/v2/workflow/list-workflows?page=1&limit=10' -H 'Authorization: Bearer app-abcdefghijklmn'
+curl -X GET 'https://api.browseract.com/v2/agent/list-tasks?agent_id=&page=1&limit=10' -H 'Authorization: Bearer app-abcdefghijklmn'
 """
 
 import traceback
@@ -14,6 +15,12 @@ import requests
 def main():
     # API Key Required for API Call, generated from: https://www.browseract.com/reception/integrations
     authorization = "app-abcdefghijklmn"
+
+    # Specify the agent ID to filter tasks. 
+    # When provided, return only tasks associated with the specified agent. 
+    # If omitted, return tasks from all agents.
+    # You can copy it from: https://www.browseract.com/reception/agent-list
+    agent_id = ""
 
     # Page number (minimum: 1, default: 1)
     page = 1
@@ -26,7 +33,7 @@ def main():
             "Authorization": f"Bearer {authorization}"
         }
         
-        api_url = f"https://api.browseract.com/v2/workflow/list-workflows?page={page}&limit={limit}"
+        api_url = f"https://api.browseract.com/v2/agent/list-tasks?agent_id={agent_id}&page={page}&limit={limit}"
         response = requests.get(
             api_url, headers=headers
         )
@@ -56,11 +63,24 @@ success example:
   'page': 1,
   'limit': 10,
   'items': [{
-    'id': '16217357109956214',
-    'name': 'test demo',
-    'description': 'This is a test demo',
-    'create_at': '2025-10-07T06:15:24Z',
-    'publish_at': '2025-10-07T06:27:37Z'
+    'id': '16628193563511975',
+    'task': 'open github,search LLM and save first 10 project name.',
+    'output': {
+      'string': None,
+      'files': None
+    },
+    'status': 'created',
+    'live_url_info': {
+      'width': 1280,
+      'height': 1024,
+      'live_url': 'https://www.browseract.com/remote/abcde'
+    },
+    'live_url': 'https://www.browseract.com/remote/abcde',
+    'profile_id': 'abcdef',
+    'created_at': None,
+    'finished_at': None,
+    'task_failure_info': None,
+    'agent_id': '15133850277314863'
   }],
   'total_pages': 1,
   'total_count': 1

@@ -49,7 +49,7 @@ def main():
         else:
             # error example:
             # {'code': 401, 'msg': 'Invalid authorization', 'data': None, 'ts': 1759917250113, 'time': '2025-10-08 09:54:10', 'traceId': 'bcdef'}
-            print("api-call-error:", response.json())
+            print(f"api-call-error: status={response.status_code}", response.json())
     except:
         error = traceback.format_exc()
         print(f"run-error: {error}")

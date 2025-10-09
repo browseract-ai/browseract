@@ -1,11 +1,11 @@
 """
 Description:
-Returns a paginated list of all Workflows, sorted by creation time.
+Returns a paginated list of all Agents, sorted by creation time.
 
 Documentation:
-https://www.browseract.com/reception/integrations/api-workflow
+https://www.browseract.com/reception/integrations/api-agent
 
-curl -X GET 'https://api.browseract.com/v2/workflow/list-workflows?page=1&limit=10' -H 'Authorization: Bearer app-abcdefghijklmn'
+curl -X GET 'https://api.browseract.com/v2/agent/list-agents?page=1&limit=10' -H 'Authorization: Bearer app-abcdefghijklmn'
 """
 
 import traceback
@@ -26,7 +26,7 @@ def main():
             "Authorization": f"Bearer {authorization}"
         }
         
-        api_url = f"https://api.browseract.com/v2/workflow/list-workflows?page={page}&limit={limit}"
+        api_url = f"https://api.browseract.com/v2/agent/list-agents?page={page}&limit={limit}"
         response = requests.get(
             api_url, headers=headers
         )
@@ -52,17 +52,21 @@ if __name__ == "__main__":
 
 """
 success example: 
-{
-  'page': 1,
-  'limit': 10,
-  'items': [{
-    'id': '16217357109956214',
-    'name': 'test demo',
-    'description': 'This is a test demo',
-    'create_at': '2025-10-07T06:15:24Z',
-    'publish_at': '2025-10-07T06:27:37Z'
-  }],
-  'total_pages': 1,
-  'total_count': 1
-}
+ {
+   'page': 1,
+   'limit': 10,
+   'items': [{
+     'id': '11551123974138987',
+     'name': 'This is a test demo',
+     'description': 'This is a test demo',
+     'create_at': '2025-09-11T12:11:31Z'
+   }, {
+     'id': '15133850277314863',
+     'name': 'This is a test demo2',
+     'description': 'This is a test demo2',
+     'create_at': '2025-08-07T02:11:36Z'
+   }],
+   'total_pages': 1,
+   'total_count': 2
+ }
 """
