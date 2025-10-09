@@ -1,3 +1,9 @@
-# browseract.ai
+# browseract.com
 
-AI agent is coming soon...
+AI Web Scraper & Automation  
+  
+Any Site, No Code, Zero Limits, Reliable Data  
+  
+Create and share smart scraping templates with simple prompts. Power your n8n, Make, Zapier workflows with reliable web data¡ªno maintenance, no breaking, just continuous intelligence.  
+  
+Please visit: https://www.browseract.com/
