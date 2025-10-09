@@ -6,7 +6,7 @@ This action is irreversible - once stopped, the task cannot be resumed or restar
 Documentation:
 https://www.browseract.com/reception/integrations/api-workflow
 
-curl -X PUT 'https://api.browseract.com/v2/workflow/get-task?task_id=16429034742537847' -H 'Authorization: Bearer app-abcdefghijklmn'
+curl -X PUT 'https://api.browseract.com/v2/workflow/stop-task?task_id=16429034742537847' -H 'Authorization: Bearer app-abcdefghijklmn'
 """
 
 import traceback
@@ -32,12 +32,12 @@ def main():
 
         if response.status_code == 200:
             # success example: No content will be returned
-            # Note: Even if the task has been completed, this API will return 200 status_code
             print("api-call-ok:", response.text)
         else:
             # error example:
             # {'code': 401, 'msg': 'Invalid authorization', 'data': None, 'ts': 1759917250113, 'time': '2025-10-08 09:54:10', 'traceId': 'bcdef'}
             # {'code': 10112, 'msg': 'Task is not exist.', 'data': None, 'ts': 1759918566040, 'time': '2025-10-08 10:16:06', 'traceId': 'cdefg'}
+            # {'code': 10121, 'msg': 'Task has completed.', 'data': None, 'ts': 1760011362293, 'time': '2025-10-09 12:02:42', 'traceId': 'hijkl'}
             print("api-call-error:", response.json())
     except:
         error = traceback.format_exc()
