@@ -5,6 +5,8 @@ output from finished tasks, and other metadata.
 
 Documentation:
 https://www.browseract.com/reception/integrations/api-workflow
+
+curl -X GET 'https://api.browseract.com/v2/workflow/get-task?task_id=16429034742537847' -H 'Authorization: Bearer app-abcdefghijklmn'
 """
 
 import traceback
@@ -15,6 +17,7 @@ def main():
     authorization = "app-abcdefghijklmn"
 
     # The task ID, returned by endpoints like /run-task.
+    # Please refer to "1.run_task.py"
     task_id = 1234567890
 
     try:

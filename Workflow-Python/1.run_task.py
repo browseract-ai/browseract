@@ -4,6 +4,8 @@ Start a new workflow task and return a task ID for progress tracking.
 
 Documentation:
 https://www.browseract.com/reception/integrations/api-workflow
+
+curl -X POST 'https://api.browseract.com/v2/workflow/run-task' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"save_browser_data": true,"profile_id": ""}'
 """
 
 import traceback
@@ -29,10 +31,14 @@ def main():
             # Parameters entered when running a workflow task, 
             # which are defined by you when orchestrate the workflow
             "input_parameters": [{
+                # First parameter's name
                 "name": "target_url",
+                # First parameter's value
                 "value": "https://www.google.com/search?q=iphone17",
             },{
+                # Second parameter's name
                 "name": "product_limit",
+                # Second parameter's value
                 "value": "10",
             }],
             
@@ -58,7 +64,7 @@ def main():
             
             task_id = response.json()["id"]
             # Polling the task status until the task is completed or timed out.
-            # Please refer to 3.get_task.py or  4.get_task_status.py
+            # Please refer to "3.get_task.py" or "4.get_task_status.py"
         else:
             # error example:
             # {'code': 401, 'msg': 'Invalid authorization', 'data': None, 'ts': 1759917250113, 'time': '2025-10-08 09:54:10', 'traceId': 'bcdef'}
