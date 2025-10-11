@@ -24,7 +24,21 @@
   "author": "BrowserAct",
   "license": "MIT",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "node 1.runTask.js",
+    "run-task": "node 1.runTask.js",
+    "stop-task": "node 2.stopTask.js",
+    "pause-task": "node 3.pauseTask.js",
+    "resume-task": "node 4.resumeTask.js",
+    "get-task": "node 5.getTask.js",
+    "get-task-status": "node 6.getTaskStatus.js",
+    "list-tasks": "node 7.listTasks.js",
+    "list-agents": "node 8.listAgents.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "echo \"No linter configured\" && exit 0"
   },
   "repository": {
     "type": "git",

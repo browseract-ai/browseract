@@ -59,6 +59,22 @@ node 7.listTasks.js
 node 8.listAgents.js
 ```
 
+## Project Structure
+
+```
+Agent-NodeJs/
+├── package.json              # Node.js dependencies and scripts
+├── README.md                 # This file
+├── 1.runTask.js             # Start a new agent task
+├── 2.stopTask.js            # Permanently terminate a task
+├── 3.pauseTask.js           # Temporarily suspend a task
+├── 4.resumeTask.js          # Resume a paused task
+├── 5.getTask.js             # Get detailed task information
+├── 6.getTaskStatus.js       # Get task status only
+├── 7.listTasks.js           # List all tasks
+└── 8.listAgents.js          # List all agents
+```
+
 ## Example Files
 
 | File | Description | API Endpoint |

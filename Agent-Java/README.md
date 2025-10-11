@@ -51,6 +51,25 @@ mvn exec:java -Dexec.mainClass="com.browseract.agent.demo.ListAgents"
 
 Open pom.xml with Idea, then run the main function in each Java file
 
+## Project Structure
+
+```
+Agent-Java/
+├── pom.xml                   # Maven configuration
+├── README.md                 # This file
+└── src/main/java/com/browseract/agent/demo/
+    ├── RunTask.java          # Start a new agent task
+    ├── StopTask.java         # Permanently terminate a task
+    ├── PauseTask.java        # Temporarily suspend a task
+    ├── ResumeTask.java       # Resume a paused task
+    ├── GetTask.java          # Get detailed task information
+    ├── GetTaskStatus.java    # Get task status only
+    ├── ListTasks.java        # List all tasks
+    ├── ListAgents.java       # List all agents
+    └── util/
+        └── HttpUtil.java     # HTTP utility class
+```
+
 ## Example Files
 
 | File | Description | API Endpoint |

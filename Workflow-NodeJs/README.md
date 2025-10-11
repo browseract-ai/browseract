@@ -57,6 +57,21 @@ node 6.listWorkflows.js
 node 7.getWorkflow.js
 ```
 
+## Project Structure
+
+```
+Workflow-NodeJs/
+├── package.json              # Node.js dependencies and scripts
+├── README.md                 # This file
+├── 1.runTask.js             # Start a new workflow task
+├── 2.stopTask.js            # Permanently terminate a task
+├── 3.getTask.js             # Get detailed task information
+├── 4.getTaskStatus.js       # Get task status only
+├── 5.listTasks.js           # List all workflow tasks
+├── 6.listWorkflows.js       # List all workflows
+└── 7.getWorkflow.js         # Get workflow details
+```
+
 ## Example Files
 
 | File | Description | API Endpoint |

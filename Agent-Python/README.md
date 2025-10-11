@@ -33,6 +33,7 @@ Site: https://www.browseract.com
 
 ## Running Examples
 
+### Method 1: Using Python directly
 ```bash
 # Run specific example
 python 1.run_task.py
@@ -43,6 +44,22 @@ python 5.get_task.py
 python 6.get_task_status.py
 python 7.list_tasks.py
 python 8.list_agents.py
+```
+
+## Project Structure
+
+```
+Agent-Python/
+├── README.md                 # This file
+├── requirements.txt          # Python dependencies
+├── 1.run_task.py            # Start a new agent task
+├── 2.stop_task.py           # Permanently terminate a task
+├── 3.pause_task.py          # Temporarily suspend a task
+├── 4.resume_task.py         # Resume a paused task
+├── 5.get_task.py            # Get detailed task information
+├── 6.get_task_status.py     # Get task status only
+├── 7.list_tasks.py          # List all tasks
+└── 8.list_agents.py         # List all agents
 ```
 
 ## Example Files

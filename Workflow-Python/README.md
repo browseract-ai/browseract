@@ -33,6 +33,7 @@ Site: https://www.browseract.com
 
 ## Running Examples
 
+### Method 1: Using Python directly
 ```bash
 # Run specific example
 python 1.run_task.py
@@ -42,6 +43,21 @@ python 4.get_task_status.py
 python 5.list_tasks.py
 python 6.list_workflows.py
 python 7.get_workflow.py
+```
+
+## Project Structure
+
+```
+Workflow-Python/
+├── README.md                 # This file
+├── requirements.txt          # Python dependencies
+├── 1.run_task.py            # Start a new workflow task
+├── 2.stop_task.py           # Permanently terminate a task
+├── 3.get_task.py            # Get detailed task information
+├── 4.get_task_status.py     # Get task status only
+├── 5.list_tasks.py          # List all workflow tasks
+├── 6.list_workflows.py      # List all workflows
+└── 7.get_workflow.py        # Get workflow details
 ```
 
 ## Example Files

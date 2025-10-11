@@ -23,7 +23,20 @@
   "author": "BrowserAct",
   "license": "MIT",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "node 1.runTask.js",
+    "run-task": "node 1.runTask.js",
+    "stop-task": "node 2.stopTask.js",
+    "get-task": "node 3.getTask.js",
+    "get-task-status": "node 4.getTaskStatus.js",
+    "list-tasks": "node 5.listTasks.js",
+    "list-workflows": "node 6.listWorkflows.js",
+    "get-workflow": "node 7.getWorkflow.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "echo \"No linter configured\" && exit 0"
   },
   "repository": {
     "type": "git",

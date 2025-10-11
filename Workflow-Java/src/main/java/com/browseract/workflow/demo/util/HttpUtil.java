@@ -13,7 +13,7 @@ public class HttpUtil {
     
     public static HttpResult postJson(String url, Object requestBody, Map<String, String> headers) {
         try {
-            URL urlObj = new URL(url);
+            URL urlObj = URI.create(url).toURL();
             HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
             
             // Set request method and headers
@@ -67,7 +67,7 @@ public class HttpUtil {
     
     public static HttpResult put(String url, Map<String, String> headers) {
         try {
-            URL urlObj = new URL(url);
+            URL urlObj = URI.create(url).toURL();
             HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
             
             // Set request method and headers
@@ -110,7 +110,7 @@ public class HttpUtil {
     
     public static HttpResult get(String url, Map<String, String> headers) {
         try {
-            URL urlObj = new URL(url);
+            URL urlObj = URI.create(url).toURL();
             HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
             
             // Set request method and headers

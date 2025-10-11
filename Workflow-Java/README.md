@@ -51,6 +51,24 @@ mvn exec:java -Dexec.mainClass="com.browseract.workflow.demo.GetWorkflow"
 Open pom.xml with Idea, then run the main function in each Java file
 
 
+## Project Structure
+
+```
+Workflow-Java/
+├── pom.xml                   # Maven configuration
+├── README.md                 # This file
+└── src/main/java/com/browseract/workflow/demo/
+    ├── RunTask.java          # Start a new workflow task
+    ├── StopTask.java         # Permanently terminate a task
+    ├── GetTask.java          # Get detailed task information
+    ├── GetTaskStatus.java    # Get task status only
+    ├── ListTasks.java        # List all workflow tasks
+    ├── ListWorkflows.java    # List all workflows
+    ├── GetWorkflow.java      # Get workflow details
+    └── util/
+        └── HttpUtil.java     # HTTP utility class
+```
+
 ## Example Files
 
 | File | Description | API Endpoint |
