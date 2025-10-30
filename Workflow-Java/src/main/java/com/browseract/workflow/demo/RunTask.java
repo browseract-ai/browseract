@@ -7,7 +7,7 @@ package com.browseract.workflow.demo;
  * Documentation:
  * https://www.browseract.com/reception/integrations/api-workflow
  * <p>
- * curl -X POST 'https://api.browseract.com/v2/workflow/run-task' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"save_browser_data": true,"profile_id": ""}'
+ * curl -X POST 'https://api.browseract.com/v2/workflow/run-task' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"save_browser_data": true,"profile_id": "","callback_url": "https://www.mydomain.com/callback"}'
  */
 
 import com.browseract.workflow.demo.util.HttpUtil;
@@ -39,6 +39,7 @@ public class RunTask {
         requestBodyObject.setWorkflow_id(workflowId);
         requestBodyObject.setSave_browser_data(true);
         requestBodyObject.setProfile_id("");
+        requestBodyObject.setCallback_url("https://www.mydomain.com/callback");
 
         // add workflow's parameters
         List<InputParameter> params = new ArrayList<>();
@@ -88,6 +89,19 @@ public class RunTask {
          * Note: if profile_id isn't provided, a random one will be generated during task execution.
          */
         private String profile_id;
+        
+        /**
+         * HTTP / HTTPS URL to receive task completion notifications via POST request.
+         * The callback payload structure is identical to the "Get Task" API response.
+         * Triggered when: Task completes, fails, or is canceled.
+         * Requirements:
+         * - Valid HTTP/HTTPS URL (max 2048 characters)
+         * - Publicly accessible endpoint
+         * - Must return 2xx status within 30 seconds
+         * - Redirects (3xx) are not allowed
+         * Retry: Automatic retry (max 3 attempts) for 5xx errors only.
+         */
+        private String callback_url;
 
         // Getters and Setters
         public long getWorkflow_id() {
@@ -120,6 +134,14 @@ public class RunTask {
 
         public void setProfile_id(String profile_id) {
             this.profile_id = profile_id;
+        }
+        
+        public String getCallback_url() {
+            return callback_url;
+        }
+
+        public void setCallback_url(String callback_url) {
+            this.callback_url = profile_id;
         }
     }
 
