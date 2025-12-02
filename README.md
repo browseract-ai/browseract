@@ -52,7 +52,7 @@ BrowserAct is an AI-powered web scraping and automation platform that provides t
 | `/v2/workflow/list-workflows` | GET | List all workflows |
 | `/v2/workflow/get-workflow` | GET | Get workflow details |
 
-## 🛠�? Language Support
+## 🛠 Language Support
 
 ### Python
 - **Version**: Python 3.8+
@@ -127,12 +127,12 @@ This demo code is provided as-is for educational and development purposes under 
 
 ## 🌟 Features
 
-- �? **Multi-language Support**: Python, Java, and Node.js implementations
-- �? **Complete API Coverage**: All BrowserAct API endpoints included
-- �? **Production Ready**: Enterprise-grade code with proper error handling
-- �? **Easy to Use**: Simple examples that can be run immediately
-- �? **Well Documented**: Comprehensive README files for each language
-- �? **Modern Standards**: Follows best practices for each language
+- **Multi-language Support**: Python, Java, and Node.js implementations
+- **Complete API Coverage**: All BrowserAct API endpoints included
+- **Production Ready**: Enterprise-grade code with proper error handling
+- **Easy to Use**: Simple examples that can be run immediately
+- **Well Documented**: Comprehensive README files for each language
+- **Modern Standards**: Follows best practices for each language
 
 ---
 
