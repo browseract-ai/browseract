@@ -39,7 +39,8 @@ public class RunTask {
         requestBodyObject.setWorkflow_id(workflowId);
         requestBodyObject.setSave_browser_data(true);
         requestBodyObject.setProfile_id("");
-        requestBodyObject.setCallback_url("https://www.mydomain.com/callback");
+        requestBodyObject.setCallback_url("https://www.mydomain.com/task_finish_callback");
+        requestBodyObject.setStatus_change_callback_url(""https://www.mydomain.com/task_status_change_callback"");
 
         // add workflow's parameters
         List<InputParameter> params = new ArrayList<>();
@@ -91,7 +92,7 @@ public class RunTask {
         private String profile_id;
         
         /**
-         * HTTP / HTTPS URL to receive task completion notifications via POST request.
+         * HTTP/HTTPS URL to receive task completion notifications via POST request.
          * The callback payload structure is identical to the "Get Task" API response.
          * Triggered when: Task completes, fails, or is canceled.
          * Requirements:
@@ -102,6 +103,19 @@ public class RunTask {
          * Retry: Automatic retry (max 3 attempts) for 5xx errors only.
          */
         private String callback_url;
+        
+        /**
+         * HTTP/HTTPS URL to receive task status change notifications via POST request.
+         * The callback payload structure is identical to the "Get Task" API response.
+         * Triggered when: Task running, paused, finished, canceled, failed.
+         * Requirements:
+         * - Valid HTTP/HTTPS URL (max 2048 characters)
+         * - Publicly accessible endpoint
+         * - Must return 2xx status within 30 seconds
+         * - Redirects (3xx) are not allowed
+         * Retry: Automatic retry (max 3 attempts) for 5xx errors only.
+         */
+        private String status_change_callback_url;
 
         // Getters and Setters
         public long getWorkflow_id() {

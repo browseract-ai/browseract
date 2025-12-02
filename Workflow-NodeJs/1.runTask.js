@@ -49,7 +49,7 @@ async function main() {
             // Note: if profile_id isn't provided, a random one will be generated during task execution.
             "profile_id": "",
 
-            // HTTP / HTTPS URL to receive task completion notifications via POST request.
+            // HTTP/HTTPS URL to receive task completion notifications via POST request.
             // The callback payload structure is identical to the "Get Task" API response.
             // Triggered when: Task completes, fails, or is canceled.
             // Requirements:
@@ -58,7 +58,18 @@ async function main() {
             // - Must return 2xx status within 30 seconds
             // - Redirects (3xx) are not allowed
             // Retry: Automatic retry (max 3 attempts) for 5xx errors only.
-            "callback_url": "https://www.mydomain.com/callback"
+            "callback_url": "https://www.mydomain.com/task_finish_callback",
+
+            // HTTP/HTTPS URL to receive task status change notifications via POST request.
+            // The callback payload structure is identical to the "Get Task" API response.
+            // Triggered when: Task running, paused, finished, canceled, failed.
+            // Requirements:
+            // - Valid HTTP/HTTPS URL (max 2048 characters)
+            // - Publicly accessible endpoint
+            // - Must return 2xx status within 30 seconds
+            // - Redirects (3xx) are not allowed
+            // Retry: Automatic retry (max 3 attempts) for 5xx errors only.
+            "status_change_callback_url": "https://www.mydomain.com/task_status_change_callback"
         });
         
         const options = {
