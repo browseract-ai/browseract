@@ -12,7 +12,7 @@ Use Cases:
 Usage Steps:
 1. Modify API_KEY and WORKFLOW_ID below
 2. Modify input_parameters according to your workflow
-3. Run script: python scenarios/scenario_1_run_and_wait.py
+3. Run script: python Scenarios-Python/scenario_1_run_and_wait.py
 """
 
 import os

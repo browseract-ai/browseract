@@ -11,13 +11,23 @@ This repository contains comprehensive API demo code for [BrowserAct](https://ww
 
 ## 🚀 Quick Start
 
-Choose your preferred language and get started in minutes:
+### 🎯 For New Users (Recommended)
 
-| Language | Workflow API | Quick Start |
-|----------|--------------|-------------|
-| **Python** | [Workflow-Python](./Workflow-Python/) | `cd Workflow-Python && python 1.run_task.py` |
-| **Java** | [Workflow-Java](./Workflow-Java/) | `cd Workflow-Java && mvn exec:java -Dexec.mainClass="com.browseract.workflow.demo.RunTask"` |
-| **Node.js** | [Workflow-NodeJs](./Workflow-NodeJs/) | `cd Workflow-NodeJs && node 1.runTask.js` |
+Start with **scenario-based examples** that demonstrate complete workflows:
+
+- **Python**: [Scenarios-Python](./Scenarios-Python/) - Complete examples combining multiple APIs
+  - `scenario_1_run_and_wait.py` - Run custom workflow and wait for completion
+  - `scenario_2_run_template_and_wait.py` - Run template task and wait for completion (Best for beginners)
+
+### 📚 For API Reference
+
+Choose your preferred language and explore individual API examples:
+
+| Language | Workflow API | Scenario Examples | Quick Start |
+|----------|--------------|-------------------|-------------|
+| **Python** | [Workflow-Python](./Workflow-Python/) | [Scenarios-Python](./Scenarios-Python/) | `python Scenarios-Python/scenario_1_run_and_wait.py` |
+| **Java** | [Workflow-Java](./Workflow-Java/) | - | `cd Workflow-Java && mvn exec:java -Dexec.mainClass="com.browseract.workflow.demo.RunTask"` |
+| **Node.js** | [Workflow-NodeJs](./Workflow-NodeJs/) | - | `cd Workflow-NodeJs && node 1.runTask.js` |
 
 ## 📁 Project Structure
 
@@ -26,6 +36,7 @@ browseract-api-demos/
 ├── Workflow-Python/       # Python Workflow API demos
 ├── Workflow-Java/         # Java Workflow API demos
 ├── Workflow-NodeJs/       # Node.js Workflow API demos
+├── Scenarios-Python/      # Scenario-based examples (recommended for new users)
 ├── .gitignore             # Git ignore rules
 └── README.md              # This file
 ```

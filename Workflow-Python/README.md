@@ -37,12 +37,15 @@ Site: https://www.browseract.com
 
 If you're new to BrowserAct API, we recommend starting with **scenario-based examples** that demonstrate how to combine multiple APIs to accomplish real-world use cases:
 
-📖 **View Scenario Guide**: [SCENARIOS.md](./SCENARIOS.md)
+📖 **View Scenario Guide**: [SCENARIOS.md](./SCENARIOS.md) or [Scenarios-Python/README.md](../Scenarios-Python/README.md)
 
-**Quick Start with Scenario Example**:
+**Quick Start with Scenario Examples**:
 ```bash
-# Scenario: Run task and wait for completion (Most Common)
-python scenarios/scenario_1_run_and_wait.py
+# Scenario 1: Run custom workflow task and wait for completion
+python ../Scenarios-Python/scenario_1_run_and_wait.py
+
+# Scenario 2: Run template task and wait for completion (Recommended for beginners)
+python ../Scenarios-Python/scenario_2_run_template_and_wait.py
 ```
 
 ### 📚 Individual API Examples (Learn Specific API Usage)
@@ -78,7 +81,7 @@ python 12.get_region_list.py
 3. Run template task: Run `9.run_task_by_template.py` with a template ID from step 1
 4. Check status: Run `3.get_task.py` or `4.get_task_status.py` to monitor progress
 
-**Recommended**: Start with **Scenario 1** (`scenarios/scenario_1_run_and_wait.py`) for a complete example that combines multiple APIs.
+**Recommended**: Start with **Scenario Examples** in `../Scenarios-Python/` directory for complete examples that combine multiple APIs.
 
 ## Project Structure
 
@@ -86,9 +89,7 @@ python 12.get_region_list.py
 Workflow-Python/
 ├── README.md                      # This file
 ├── SCENARIOS.md                   # Scenario-based usage guide
-├── requirements.txt               # Python dependencies
-├── scenarios/                     # Scenario-based examples directory
-│   └── scenario_1_run_and_wait.py           # Scenario: Run task and wait for completion
+└── requirements.txt               # Python dependencies
 ├── 1.run_task.py                  # Start a new workflow task
 ├── 2.stop_task.py                 # Permanently terminate a task
 ├── 3.get_task.py                  # Get detailed task information
