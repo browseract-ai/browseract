@@ -28,7 +28,7 @@ API_KEY = os.getenv("BROWSERACT_API_KEY", "app-abcdefghijklmn")
 
 # Workflow Template ID, you can get it from:
 # - Run: python Workflow-Python/11.list_official_workflow_templates.py
-# - Or visit: https://www.browseract.com/reception/workflow-list
+# - Or visit: https://www.browseract.com/template?platformType=0
 WORKFLOW_TEMPLATE_ID = "1234567890"
 
 # Workflow input parameters (modify according to the template definition)

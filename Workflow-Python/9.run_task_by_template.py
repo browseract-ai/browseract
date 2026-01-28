@@ -15,7 +15,7 @@ def main():
     # API Key Required for API Call, generated from: https://www.browseract.com/reception/integrations
     authorization = "app-abcdefghijklmn"
 
-    # workflow template ID, you can get it from: https://www.browseract.com/reception/workflow-list
+    # workflow template ID, you can get it from: https://www.browseract.com/template?platformType=0
     # Or use the API: GET /v2/workflow/list-official-workflow-templates
     workflow_template_id = "1234567890"
 
