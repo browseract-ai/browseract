@@ -131,10 +131,17 @@ $env:BROWSERACT_API_KEY="your-api-key-here"
 export BROWSERACT_API_KEY="your-api-key-here"
 ```
 
-### 2. Get Workflow ID
+### 2. Get Workflow ID or Template ID
 
+**Option A: Using Custom Workflows**
 1. Visit: https://www.browseract.com/reception/workflow-list
 2. Copy the workflow ID you want to use
+3. Or run: `python 6.list_workflows.py` to get workflow IDs programmatically
+
+**Option B: Using Official Templates** (Recommended for beginners)
+1. Run: `python 11.list_official_workflow_templates.py` to see all available templates
+2. Copy the `templateId` from the response
+3. Optionally run: `python 12.get_region_list.py` to see available proxy regions
 
 ### 3. Run Scenario Examples
 
@@ -165,8 +172,23 @@ python scenarios/scenario_5_callback_based.py
 | Scenario 4 | Not sure about workflow parameters | ⭐ Simple |
 | Scenario 5 | Need async processing, integrate existing system | ⭐⭐ Medium |
 
+## Using Official Templates
+
+BrowserAct provides official workflow templates that are ready to use without creating your own workflows. Templates are perfect for:
+- Quick prototyping and testing
+- Common use cases (web scraping, data collection, etc.)
+- Users who don't want to create custom workflows
+
+**To use templates:**
+1. List templates: Run `11.list_official_workflow_templates.py`
+2. Get template details: Use the template ID with `9.run_task_by_template.py`
+3. Configure proxy region: Run `12.get_region_list.py` to see available regions
+
+**Note**: Template-based tasks (`run-task-by-template`) don't support browser profile reuse (`save_browser_data` and `profile_id`). Use custom workflows (`run-task`) if you need these features.
+
 ## Next Steps
 
 - View [API Documentation](https://www.browseract.com/reception/integrations/api-workflow)
 - View [Individual API Examples](../README.md#example-files)
+- Try the [Quick Start Guide](../README.md#-quick-start-guide) in README.md
 - For questions, contact support: support@browseract.com
