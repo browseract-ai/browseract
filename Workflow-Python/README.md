@@ -39,22 +39,10 @@ If you're new to BrowserAct API, we recommend starting with **scenario-based exa
 
 📖 **View Scenario Guide**: [SCENARIOS.md](./SCENARIOS.md)
 
-**Quick Start with Scenario Examples**:
+**Quick Start with Scenario Example**:
 ```bash
-# Scenario 1: Run task and wait for completion (Most Common)
+# Scenario: Run task and wait for completion (Most Common)
 python scenarios/scenario_1_run_and_wait.py
-
-# Scenario 2: Batch run tasks
-python scenarios/scenario_2_batch_run.py
-
-# Scenario 3: Monitor and manage tasks
-python scenarios/scenario_3_monitor_tasks.py
-
-# Scenario 4: Get workflow info and run
-python scenarios/scenario_4_get_workflow_and_run.py
-
-# Scenario 5: Use callbacks for task completion
-python scenarios/scenario_5_callback_based.py
 ```
 
 ### 📚 Individual API Examples (Learn Specific API Usage)
@@ -100,11 +88,7 @@ Workflow-Python/
 ├── SCENARIOS.md                   # Scenario-based usage guide
 ├── requirements.txt               # Python dependencies
 ├── scenarios/                     # Scenario-based examples directory
-│   ├── scenario_1_run_and_wait.py           # Scenario 1: Run task and wait for completion
-│   ├── scenario_2_batch_run.py              # Scenario 2: Batch run tasks
-│   ├── scenario_3_monitor_tasks.py          # Scenario 3: Monitor and manage tasks
-│   ├── scenario_4_get_workflow_and_run.py   # Scenario 4: Get workflow info and run
-│   └── scenario_5_callback_based.py         # Scenario 5: Use callbacks for task completion
+│   └── scenario_1_run_and_wait.py           # Scenario: Run task and wait for completion
 ├── 1.run_task.py                  # Start a new workflow task
 ├── 2.stop_task.py                 # Permanently terminate a task
 ├── 3.get_task.py                  # Get detailed task information
