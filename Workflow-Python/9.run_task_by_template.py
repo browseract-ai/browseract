@@ -1,11 +1,11 @@
 """
 Description:
-Start a new workflow task and return a task ID for progress tracking.
+Start a new workflow task using an official template and return a task ID for progress tracking.
 
 Documentation:
 https://www.browseract.com/reception/integrations/api-workflow
 
-curl -X POST 'https://api.browseract.com/v2/workflow/run-task' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"save_browser_data": true,"profile_id": "", "callback_url":"https://www.mydomain.com/callback"}'
+curl -X POST 'https://api.browseract.com/v2/workflow/run-task-by-template' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_template_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"proxyRegion": "US", "callback_url":"https://www.mydomain.com/callback"}'
 """
 
 import traceback
@@ -15,8 +15,9 @@ def main():
     # API Key Required for API Call, generated from: https://www.browseract.com/reception/integrations
     authorization = "app-abcdefghijklmn"
 
-    # workflow ID, you can copy it from: https://www.browseract.com/reception/workflow-list
-    workflow_id = 1234567890
+    # workflow template ID, you can get it from: https://www.browseract.com/reception/workflow-list
+    # Or use the API: GET /v2/workflow/list-official-workflow-templates
+    workflow_template_id = "1234567890"
 
     try:
         headers = {
@@ -25,11 +26,11 @@ def main():
         
         # define API parameters
         data = {
-            # The workflow ID used to create and spawn a new task.
-            "workflow_id": workflow_id,
+            # The workflow template ID used to create and spawn a new task.
+            "workflow_template_id": workflow_template_id,
             
             # Parameters entered when running a workflow task, 
-            # which are defined by you when orchestrate the workflow
+            # which are defined by the template
             "input_parameters": [{
                 # First parameter's name
                 "name": "target_url",
@@ -42,14 +43,9 @@ def main():
                 "value": "10",
             }],
             
-            # Specify whether a profile_id should be returned in the response upon successful task submission. 
-            # The profile stores browser session data, including cookies and other browsing state, that is generated during task execution.
-            "save_browser_data": True,
-            
-            # The browser profile to use for this workflow task. 
-            # Browser profiles store session data, such as cookies, and other browsing state, that can be reused across tasks.
-            # Note: if profile_id isn't provided, a random one will be generated during task execution.
-            "profile_id": "",
+            # Optional. Region where the proxy should be used. Default is "US".
+            # You can get available regions from: GET /v2/workflow/get-region-list
+            "proxyRegion": "US",
 
             # HTTP/HTTPS URL to receive task completion notifications via POST request.
             # The callback payload structure is identical to the "Get Task" API response.
@@ -74,7 +70,7 @@ def main():
             "status_change_callback_url": "https://www.mydomain.com/task_status_change_callback"
         }
         
-        api_url = "https://api.browseract.com/v2/workflow/run-task"
+        api_url = "https://api.browseract.com/v2/workflow/run-task-by-template"
         response = requests.post(
             api_url, json=data, headers=headers
         )

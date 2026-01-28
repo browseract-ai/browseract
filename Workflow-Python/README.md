@@ -71,6 +71,7 @@ python 5.list_tasks.py
 python 6.list_workflows.py
 python 7.get_workflow.py
 python 8.resume_task.py
+python 9.run_task_by_template.py
 ```
 
 ## Project Structure
@@ -93,7 +94,8 @@ Workflow-Python/
 ├── 5.list_tasks.py                # List all workflow tasks
 ├── 6.list_workflows.py            # List all workflows
 ├── 7.get_workflow.py              # Get workflow details
-└── 8.resume_task.py               # Resume a paused task
+├── 8.resume_task.py               # Resume a paused task
+└── 9.run_task_by_template.py      # Start a new workflow task using template
 ```
 
 ## Example Files
@@ -107,6 +109,8 @@ Workflow-Python/
 | `5.list_tasks.py` | List all workflow tasks | GET /v2/workflow/list-tasks |
 | `6.list_workflows.py` | List all workflows | GET /v2/workflow/list-workflows |
 | `7.get_workflow.py` | Get workflow details | GET /v2/workflow/get-workflow |
+| `8.resume_task.py` | Resume a paused task | PUT /v2/workflow/resume-task |
+| `9.run_task_by_template.py` | Start a new workflow task using template | POST /v2/workflow/run-task-by-template |
 
 ## Configuration
 
