@@ -33,7 +33,34 @@ Site: https://www.browseract.com
 
 ## Running Examples
 
-### Method 1: Using Python directly
+### 🎯 Scenario-Based Examples (Recommended for New Users)
+
+If you're new to BrowserAct API, we recommend starting with **scenario-based examples** that demonstrate how to combine multiple APIs to accomplish real-world use cases:
+
+📖 **View Scenario Guide**: [SCENARIOS.md](./SCENARIOS.md)
+
+**Quick Start with Scenario Examples**:
+```bash
+# Scenario 1: Run task and wait for completion (Most Common)
+python scenarios/scenario_1_run_and_wait.py
+
+# Scenario 2: Batch run tasks
+python scenarios/scenario_2_batch_run.py
+
+# Scenario 3: Monitor and manage tasks
+python scenarios/scenario_3_monitor_tasks.py
+
+# Scenario 4: Get workflow info and run
+python scenarios/scenario_4_get_workflow_and_run.py
+
+# Scenario 5: Use callbacks for task completion
+python scenarios/scenario_5_callback_based.py
+```
+
+### 📚 Individual API Examples (Learn Specific API Usage)
+
+If you want to understand how each specific API works, you can run the following examples:
+
 ```bash
 # Run specific example
 python 1.run_task.py
@@ -43,21 +70,30 @@ python 4.get_task_status.py
 python 5.list_tasks.py
 python 6.list_workflows.py
 python 7.get_workflow.py
+python 8.resume_task.py
 ```
 
 ## Project Structure
 
 ```
 Workflow-Python/
-├── README.md                 # This file
-├── requirements.txt          # Python dependencies
-├── 1.run_task.py            # Start a new workflow task
-├── 2.stop_task.py           # Permanently terminate a task
-├── 3.get_task.py            # Get detailed task information
-├── 4.get_task_status.py     # Get task status only
-├── 5.list_tasks.py          # List all workflow tasks
-├── 6.list_workflows.py      # List all workflows
-└── 7.get_workflow.py        # Get workflow details
+├── README.md                      # This file
+├── SCENARIOS.md                   # Scenario-based usage guide
+├── requirements.txt               # Python dependencies
+├── scenarios/                     # Scenario-based examples directory
+│   ├── scenario_1_run_and_wait.py           # Scenario 1: Run task and wait for completion
+│   ├── scenario_2_batch_run.py              # Scenario 2: Batch run tasks
+│   ├── scenario_3_monitor_tasks.py          # Scenario 3: Monitor and manage tasks
+│   ├── scenario_4_get_workflow_and_run.py   # Scenario 4: Get workflow info and run
+│   └── scenario_5_callback_based.py         # Scenario 5: Use callbacks for task completion
+├── 1.run_task.py                  # Start a new workflow task
+├── 2.stop_task.py                 # Permanently terminate a task
+├── 3.get_task.py                  # Get detailed task information
+├── 4.get_task_status.py           # Get task status only
+├── 5.list_tasks.py                # List all workflow tasks
+├── 6.list_workflows.py            # List all workflows
+├── 7.get_workflow.py              # Get workflow details
+└── 8.resume_task.py               # Resume a paused task
 ```
 
 ## Example Files

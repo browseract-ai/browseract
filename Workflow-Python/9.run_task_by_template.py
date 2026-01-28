@@ -1,0 +1,100 @@
+"""
+Description:
+Start a new workflow task and return a task ID for progress tracking.
+
+Documentation:
+https://www.browseract.com/reception/integrations/api-workflow
+
+curl -X POST 'https://api.browseract.com/v2/workflow/run-task' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"save_browser_data": true,"profile_id": "", "callback_url":"https://www.mydomain.com/callback"}'
+"""
+
+import traceback
+import requests
+
+def main():
+    # API Key Required for API Call, generated from: https://www.browseract.com/reception/integrations
+    authorization = "app-abcdefghijklmn"
+
+    # workflow ID, you can copy it from: https://www.browseract.com/reception/workflow-list
+    workflow_id = 1234567890
+
+    try:
+        headers = {
+            "Authorization": f"Bearer {authorization}"
+        }
+        
+        # define API parameters
+        data = {
+            # The workflow ID used to create and spawn a new task.
+            "workflow_id": workflow_id,
+            
+            # Parameters entered when running a workflow task, 
+            # which are defined by you when orchestrate the workflow
+            "input_parameters": [{
+                # First parameter's name
+                "name": "target_url",
+                # First parameter's value
+                "value": "https://www.google.com/search?q=iphone17",
+            },{
+                # Second parameter's name
+                "name": "product_limit",
+                # Second parameter's value
+                "value": "10",
+            }],
+            
+            # Specify whether a profile_id should be returned in the response upon successful task submission. 
+            # The profile stores browser session data, including cookies and other browsing state, that is generated during task execution.
+            "save_browser_data": True,
+            
+            # The browser profile to use for this workflow task. 
+            # Browser profiles store session data, such as cookies, and other browsing state, that can be reused across tasks.
+            # Note: if profile_id isn't provided, a random one will be generated during task execution.
+            "profile_id": "",
+
+            # HTTP/HTTPS URL to receive task completion notifications via POST request.
+            # The callback payload structure is identical to the "Get Task" API response.
+            # Triggered when: Task completes, fails, or is canceled.
+            # Requirements:
+            # - Valid HTTP/HTTPS URL (max 2048 characters)
+            # - Publicly accessible endpoint
+            # - Must return 2xx status within 30 seconds
+            # - Redirects (3xx) are not allowed
+            # Retry: Automatic retry (max 3 attempts) for 5xx errors only.
+            "callback_url": "https://www.mydomain.com/task_finish_callback",
+
+            # HTTP/HTTPS URL to receive task status change notifications via POST request.
+            # The callback payload structure is identical to the "Get Task" API response.
+            # Triggered when: Task running, paused, finished, canceled, failed.
+            # Requirements:
+            # - Valid HTTP/HTTPS URL (max 2048 characters)
+            # - Publicly accessible endpoint
+            # - Must return 2xx status within 30 seconds
+            # - Redirects (3xx) are not allowed
+            # Retry: Automatic retry (max 3 attempts) for 5xx errors only.
+            "status_change_callback_url": "https://www.mydomain.com/task_status_change_callback"
+        }
+        
+        api_url = "https://api.browseract.com/v2/workflow/run-task"
+        response = requests.post(
+            api_url, json=data, headers=headers
+        )
+
+        if response.status_code == 200:
+            # success example:
+            # {'id': '12425895140306551', 'profileId': 'abcde'}
+            print("api-call-ok:", response.json())
+            
+            task_id = response.json()["id"]
+            # Polling the task status until the task is completed or timed out.
+            # Please refer to "3.get_task.py" or "4.get_task_status.py"
+        else:
+            # error example:
+            # {'code': 401, 'msg': 'Invalid authorization', 'data': None, 'ts': 1759917250113, 'time': '2025-10-08 09:54:10', 'traceId': 'bcdef'}
+            # {'code': 10118, 'msg': 'Running tasks number exceeds.', 'data': None, 'ts': 1759917310153, 'time': '2025-10-08 09:55:10', 'traceId': 'cdefg'}
+            print(f"api-call-error: status={response.status_code}", response.json())
+    except:
+        error = traceback.format_exc()
+        print(f"run-error: {error}")
+
+if __name__ == "__main__":
+    main()
