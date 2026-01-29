@@ -18,6 +18,12 @@ Start with **scenario-based examples** that demonstrate complete workflows:
 - **Python**: [Scenarios-Python](./Scenarios-Python/) - Complete examples combining multiple APIs
   - `scenario_1_run_and_wait.py` - Run custom workflow and wait for completion
   - `scenario_2_run_template_and_wait.py` - Run template task and wait for completion (Best for beginners)
+- **Java**: [Scenarios-Java](./Scenarios-Java/) - Complete examples combining multiple APIs
+  - `Scenario1RunAndWait.java` - Run custom workflow and wait for completion
+  - `Scenario2RunTemplateAndWait.java` - Run template task and wait for completion
+- **Node.js**: [Scenarios-NodeJs](./Scenarios-NodeJs/) - Complete examples combining multiple APIs
+  - `scenario1_runAndWait.js` - Run custom workflow and wait for completion
+  - `scenario2_runTemplateAndWait.js` - Run template task and wait for completion
 
 ### 📚 For API Reference
 
@@ -26,8 +32,8 @@ Choose your preferred language and explore individual API examples:
 | Language | Workflow API | Scenario Examples | Quick Start |
 |----------|--------------|-------------------|-------------|
 | **Python** | [Workflow-Python](./Workflow-Python/) | [Scenarios-Python](./Scenarios-Python/) | `python Scenarios-Python/scenario_1_run_and_wait.py` |
-| **Java** | [Workflow-Java](./Workflow-Java/) | - | `cd Workflow-Java && mvn exec:java -Dexec.mainClass="com.browseract.workflow.demo.RunTask"` |
-| **Node.js** | [Workflow-NodeJs](./Workflow-NodeJs/) | - | `cd Workflow-NodeJs && node 1.runTask.js` |
+| **Java** | [Workflow-Java](./Workflow-Java/) | [Scenarios-Java](./Scenarios-Java/) | `cd Scenarios-Java && mvn exec:java -Dexec.mainClass="com.browseract.scenarios.Scenario1RunAndWait"` |
+| **Node.js** | [Workflow-NodeJs](./Workflow-NodeJs/) | [Scenarios-NodeJs](./Scenarios-NodeJs/) | `node Scenarios-NodeJs/scenario1_runAndWait.js` |
 
 ## 📁 Project Structure
 
@@ -36,7 +42,9 @@ browseract-api-demos/
 ├── Workflow-Python/       # Python Workflow API demos
 ├── Workflow-Java/         # Java Workflow API demos
 ├── Workflow-NodeJs/       # Node.js Workflow API demos
-├── Scenarios-Python/      # Scenario-based examples (recommended for new users)
+├── Scenarios-Python/     # Python scenario-based examples (recommended for new users)
+├── Scenarios-Java/        # Java scenario-based examples (recommended for new users)
+├── Scenarios-NodeJs/      # Node.js scenario-based examples (recommended for new users)
 ├── .gitignore             # Git ignore rules
 └── README.md              # This file
 ```
