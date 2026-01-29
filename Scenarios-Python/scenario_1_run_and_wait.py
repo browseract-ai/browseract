@@ -133,8 +133,8 @@ def wait_for_task_completion(task_id):
         if status is None:
             # Network error or API error, continue waiting
             elapsed = int(elapsed_time)
-            print(f"   Network error, retrying... (waited {elapsed} seconds)", end="\r")
             print()
+            print(f"   Network error, retrying... (waited {elapsed} seconds)", end="\r")
         elif status == "finished":
             print(f"\n✅ Task completed!")
             return "finished"
@@ -149,8 +149,8 @@ def wait_for_task_completion(task_id):
             elapsed = int(elapsed_time)
             # If status changed, print on new line; otherwise update same line
             if status != previous_status:
-                print(f"   Status: {status} (waited {elapsed} seconds)", end="\r")
                 print()  # New line when status changes
+                print(f"   Status: {status} (waited {elapsed} seconds)", end="\r")
                 previous_status = status
             else:
                 # Same status, update same line
