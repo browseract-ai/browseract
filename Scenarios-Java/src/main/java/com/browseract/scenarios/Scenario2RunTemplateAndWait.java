@@ -13,15 +13,28 @@ package com.browseract.scenarios;
  * - Perfect for users who want to use official templates without creating custom workflows
  * 
  * Usage Steps:
- * 1. Modify API_KEY and WORKFLOW_TEMPLATE_ID below
- * 2. Modify input_parameters according to the template requirements
- * 3. Run: mvn exec:java -Dexec.mainClass="com.browseract.scenarios.Scenario2RunTemplateAndWait"
+ * 1. Add Jackson dependency to your project (Maven/Gradle):
+ *    Maven (pom.xml):
+ *    <dependency>
+ *        <groupId>com.fasterxml.jackson.core</groupId>
+ *        <artifactId>jackson-databind</artifactId>
+ *        <version>2.15.2</version>
+ *    </dependency>
+ * 
+ * 2. Modify API_KEY and WORKFLOW_TEMPLATE_ID below
+ * 3. Modify input_parameters according to the template requirements
+ * 4. Run: mvn exec:java -Dexec.mainClass="com.browseract.scenarios.Scenario2RunTemplateAndWait"
+ * 
+ * Note: This file is self-contained and can be copied directly into your IDE.
+ *       All HTTP utility methods are included at the bottom of this file.
  */
 
-import com.browseract.scenarios.util.HttpUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,7 +118,7 @@ public class Scenario2RunTemplateAndWait {
         requestBody.setInput_parameters(inputParameters);
         
         String apiUrl = API_BASE_URL + "/run-task-by-template";
-        HttpUtil.HttpResult result = HttpUtil.postJson(apiUrl, requestBody, headers);
+        HttpResult result = postJson(apiUrl, requestBody, headers);
         
         if (result.isSuccess()) {
             try {
@@ -131,7 +144,7 @@ public class Scenario2RunTemplateAndWait {
         headers.put("Authorization", "Bearer " + API_KEY);
         
         String apiUrl = API_BASE_URL + "/get-task-status?task_id=" + taskId;
-        HttpUtil.HttpResult result = HttpUtil.get(apiUrl, headers);
+        HttpResult result = get(apiUrl, headers);
         
         if (result.isSuccess()) {
             try {
@@ -151,7 +164,7 @@ public class Scenario2RunTemplateAndWait {
         headers.put("Authorization", "Bearer " + API_KEY);
         
         String apiUrl = API_BASE_URL + "/get-task?task_id=" + taskId;
-        HttpUtil.HttpResult result = HttpUtil.get(apiUrl, headers);
+        HttpResult result = get(apiUrl, headers);
         
         if (result.isSuccess()) {
             return result.getText();
@@ -240,5 +253,143 @@ public class Scenario2RunTemplateAndWait {
         
         public String getValue() { return value; }
         public void setValue(String value) { this.value = value; }
+    }
+    
+    // ========================================================================
+    // HTTP Utility Methods (Inline implementation for easy copy-paste)
+    // ========================================================================
+    
+    /**
+     * Send POST request with JSON body
+     */
+    private static HttpResult postJson(String url, Object requestBody, Map<String, String> headers) {
+        try {
+            URL urlObj = URI.create(url).toURL();
+            HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
+            
+            // Set request method and headers
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+            connection.setConnectTimeout(30000);
+            connection.setReadTimeout(30000);
+            
+            // Add custom headers
+            if (headers != null) {
+                for (Map.Entry<String, String> entry : headers.entrySet()) {
+                    connection.setRequestProperty(entry.getKey(), entry.getValue());
+                }
+            }
+            
+            // Convert request body to JSON
+            String jsonData = objectMapper.writeValueAsString(requestBody);
+            
+            // Send request
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonData.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+            
+            // Get response
+            int responseCode = connection.getResponseCode();
+            
+            if (responseCode == 200) {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        response.append(line);
+                    }
+                    return new HttpResult(true, responseCode, response.toString());
+                }
+            } else {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        response.append(line);
+                    }
+                    return new HttpResult(false, responseCode, response.toString());
+                }
+            }
+            
+        } catch (Exception e) {
+            return new HttpResult(false, -1, "Error: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Send GET request
+     */
+    private static HttpResult get(String url, Map<String, String> headers) {
+        try {
+            URL urlObj = URI.create(url).toURL();
+            HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
+            
+            // Set request method and headers
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(30000);
+            connection.setReadTimeout(30000);
+            
+            // Add custom headers
+            if (headers != null) {
+                for (Map.Entry<String, String> entry : headers.entrySet()) {
+                    connection.setRequestProperty(entry.getKey(), entry.getValue());
+                }
+            }
+            
+            // Get response
+            int responseCode = connection.getResponseCode();
+            
+            if (responseCode == 200) {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        response.append(line);
+                    }
+                    return new HttpResult(true, responseCode, response.toString());
+                }
+            } else {
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getErrorStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        response.append(line);
+                    }
+                    return new HttpResult(false, responseCode, response.toString());
+                }
+            }
+            
+        } catch (Exception e) {
+            return new HttpResult(false, -1, "Error: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * HTTP Result wrapper class
+     */
+    public static class HttpResult {
+        private final boolean success;
+        private final int code;
+        private final String text;
+        
+        public HttpResult(boolean success, int code, String text) {
+            this.success = success;
+            this.code = code;
+            this.text = text;
+        }
+        
+        public boolean isSuccess() {
+            return success;
+        }
+        
+        public int getCode() {
+            return code;
+        }
+        
+        public String getText() {
+            return text;
+        }
     }
 }

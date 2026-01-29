@@ -91,6 +91,21 @@ mvn exec:java -Dexec.mainClass="com.browseract.scenarios.Scenario2RunTemplateAnd
 
 ## 📝 Configuration
 
+### Dependencies
+
+**Required**: Jackson library for JSON processing
+
+Add to your `pom.xml`:
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.2</version>
+</dependency>
+```
+
+### Configuration Variables
+
 Before running scenarios, modify the following variables in each scenario file:
 
 - `API_KEY`: Your API key from https://www.browseract.com/reception/integrations
@@ -99,6 +114,12 @@ Before running scenarios, modify the following variables in each scenario file:
 - `INPUT_PARAMETERS`: Input parameters according to your workflow/template
 - `POLL_INTERVAL`: How often to check task status (default: 5 seconds)
 - `MAX_WAIT_TIME`: Maximum wait time (default: 1800 seconds / 30 minutes)
+
+## 📋 Copy-Paste Ready
+
+**Important**: Each scenario file is **self-contained** and includes all necessary HTTP utility methods at the bottom of the file. You can copy the entire file directly into your IDE without needing the `HttpUtil` class.
+
+The HTTP utility methods are included inline at the bottom of each scenario file for easy copy-paste functionality.
 
 ## 🔗 Related Files
 
