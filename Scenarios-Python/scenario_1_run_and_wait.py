@@ -18,6 +18,7 @@ Usage Steps:
 import os
 import time
 import traceback
+import json
 import requests
 
 # ============ Configuration Area - Please modify the following variables ============
@@ -161,37 +162,10 @@ def main():
         
         if task_info:
             print("\n" + "=" * 60)
-            print("Task Details:")
+            print("Task Result (JSON):")
             print("=" * 60)
-            print(f"Task ID: {task_info.get('id')}")
-            print(f"Status: {task_info.get('status')}")
-            print(f"Created At: {task_info.get('created_at')}")
-            print(f"Finished At: {task_info.get('finished_at')}")
-            
-            # Display output
-            output = task_info.get('output', {})
-            if output.get('string'):
-                print(f"\nOutput Text:")
-                print(output['string'])
-            if output.get('files'):
-                print(f"\nOutput Files:")
-                for file_url in output['files']:
-                    print(f"  - {file_url}")
-            
-            # Display step information
-            steps = task_info.get('steps', [])
-            if steps:
-                print(f"\nExecution Steps ({len(steps)} steps):")
-                for step in steps:
-                    status_icon = "✅" if step.get('status') == 'succeed' else "❌"
-                    print(f"  {status_icon} Step {step.get('step')}: {step.get('step_goal', '')[:50]}...")
-            
-            # Display failure information
-            failure_info = task_info.get('task_failure_info')
-            if failure_info:
-                print(f"\n❌ Failure Reason:")
-                print(f"   {failure_info.get('message', '')}")
-            
+            # Output complete task result as formatted JSON
+            print(json.dumps(task_info, indent=2, ensure_ascii=False))
             print("=" * 60)
         else:
             print("⚠️ Unable to get task details")
