@@ -95,7 +95,7 @@ Before running scenarios, modify the following variables in each scenario file:
 - `WORKFLOW_TEMPLATE_ID`: Your template ID (for Scenario 2)
 - `INPUT_PARAMETERS`: Input parameters according to your workflow/template
 - `POLL_INTERVAL`: How often to check task status (default: 5 seconds)
-- `MAX_WAIT_TIME`: Maximum wait time (default: 600 seconds)
+- `MAX_WAIT_TIME`: Maximum wait time (default: 1800 seconds / 30 minutes)
 
 ## 🔗 Related Files
 

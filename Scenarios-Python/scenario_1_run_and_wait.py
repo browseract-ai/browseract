@@ -42,7 +42,7 @@ INPUT_PARAMETERS = [
 
 # Polling configuration
 POLL_INTERVAL = 5  # Check task status every 5 seconds
-MAX_WAIT_TIME = 600  # Maximum wait time: 10 minutes (600 seconds)
+MAX_WAIT_TIME = 1800  # Maximum wait time: 30 minutes (1800 seconds)
 # ================================================
 
 API_BASE_URL = "https://api.browseract.com/v2/workflow"
@@ -118,7 +118,7 @@ def wait_for_task_completion(task_id):
     start_time = time.time()
     previous_status = None
     
-    print(f"\n⏳ Waiting for task completion (max wait time: {MAX_WAIT_TIME} seconds)...")
+    print(f"\n⏳ Waiting for task completion (max wait time: {MAX_WAIT_TIME // 60} minutes)...")
     
     while True:
         # Check if timeout
