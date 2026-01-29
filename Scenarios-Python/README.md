@@ -76,7 +76,6 @@ Edit the `API_KEY` variable in each scenario file.
 **For Scenario 2 (Official Template)**:
 - Run: `python Workflow-Python/11.list_official_workflow_templates.py` to see all available templates
 - Copy the `templateId` from the response
-- Optionally run: `python Workflow-Python/12.get_region_list.py` to see available proxy regions
 
 ### 4. Run Scenario
 
@@ -95,7 +94,6 @@ Before running scenarios, modify the following variables in each scenario file:
 - `WORKFLOW_ID`: Your workflow ID (for Scenario 1)
 - `WORKFLOW_TEMPLATE_ID`: Your template ID (for Scenario 2)
 - `INPUT_PARAMETERS`: Input parameters according to your workflow/template
-- `PROXY_REGION`: Proxy region code (for Scenario 2, default: "US")
 - `POLL_INTERVAL`: How often to check task status (default: 5 seconds)
 - `MAX_WAIT_TIME`: Maximum wait time (default: 600 seconds)
 

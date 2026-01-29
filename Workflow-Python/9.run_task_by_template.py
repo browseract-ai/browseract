@@ -5,7 +5,7 @@ Start a new workflow task using an official template and return a task ID for pr
 Documentation:
 https://www.browseract.com/reception/integrations/api-workflow
 
-curl -X POST 'https://api.browseract.com/v2/workflow/run-task-by-template' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_template_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"proxyRegion": "US", "callback_url":"https://www.mydomain.com/callback"}'
+curl -X POST 'https://api.browseract.com/v2/workflow/run-task-by-template' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_template_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"callback_url":"https://www.mydomain.com/callback"}'
 """
 
 import traceback
@@ -42,10 +42,6 @@ def main():
                 # Second parameter's value
                 "value": "10",
             }],
-            
-            # Optional. Region where the proxy should be used. Default is "US".
-            # You can get available regions from: GET /v2/workflow/get-region-list
-            "proxyRegion": "US",
 
             # HTTP/HTTPS URL to receive task completion notifications via POST request.
             # The callback payload structure is identical to the "Get Task" API response.

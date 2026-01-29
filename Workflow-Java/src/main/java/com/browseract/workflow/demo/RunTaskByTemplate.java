@@ -7,7 +7,7 @@ package com.browseract.workflow.demo;
  * Documentation:
  * https://www.browseract.com/reception/integrations/api-workflow
  * <p>
- * curl -X POST 'https://api.browseract.com/v2/workflow/run-task-by-template' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_template_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"proxyRegion": "US", "callback_url": "https://www.mydomain.com/callback"}'
+ * curl -X POST 'https://api.browseract.com/v2/workflow/run-task-by-template' -H 'Authorization: Bearer app-abcdefghijklmn' -H 'Content-Type: application/json' -d '{"workflow_template_id": "1234567890","input_parameters": [{"name": "target_url","value": "https://www.google.com/search?q=iphone17"},{"name": "product_limit","value": "10"}],"callback_url": "https://www.mydomain.com/callback"}'
  */
 
 import com.browseract.workflow.demo.util.HttpUtil;
@@ -38,7 +38,6 @@ public class RunTaskByTemplate {
         // init api parameters
         RunTaskByTemplateRequest requestBodyObject = new RunTaskByTemplateRequest();
         requestBodyObject.setWorkflow_template_id(workflowTemplateId);
-        requestBodyObject.setProxyRegion("US");
         requestBodyObject.setCallback_url("https://www.mydomain.com/task_finish_callback");
         requestBodyObject.setStatus_change_callback_url("https://www.mydomain.com/task_status_change_callback");
 
@@ -77,12 +76,6 @@ public class RunTaskByTemplate {
          * which are defined by the template
          */
         private List<InputParameter> input_parameters;
-
-        /**
-         * Optional. Region where the proxy should be used. Default is "US".
-         * You can get available regions from: GET /v2/workflow/get-region-list
-         */
-        private String proxyRegion;
         
         /**
          * HTTP/HTTPS URL to receive task completion notifications via POST request.
@@ -125,14 +118,6 @@ public class RunTaskByTemplate {
 
         public void setInput_parameters(List<InputParameter> input_parameters) {
             this.input_parameters = input_parameters;
-        }
-
-        public String getProxyRegion() {
-            return proxyRegion;
-        }
-
-        public void setProxyRegion(String proxyRegion) {
-            this.proxyRegion = proxyRegion;
         }
         
         public String getCallback_url() {

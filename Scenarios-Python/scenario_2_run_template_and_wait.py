@@ -13,8 +13,7 @@ Use Cases:
 Usage Steps:
 1. Modify API_KEY and WORKFLOW_TEMPLATE_ID below
 2. Modify input_parameters according to the template requirements
-3. Optionally modify PROXY_REGION (default: "US")
-4. Run script: python Scenarios-Python/scenario_2_run_template_and_wait.py
+3. Run script: python Scenarios-Python/scenario_2_run_template_and_wait.py
 """
 
 import os
@@ -43,10 +42,6 @@ INPUT_PARAMETERS = [
     }
 ]
 
-# Optional. Region where the proxy should be used. Default is "US".
-# You can get available regions from: python Workflow-Python/12.get_region_list.py
-PROXY_REGION = "US"
-
 # Polling configuration
 POLL_INTERVAL = 5  # Check task status every 5 seconds
 MAX_WAIT_TIME = 600  # Maximum wait time: 10 minutes (600 seconds)
@@ -54,7 +49,7 @@ MAX_WAIT_TIME = 600  # Maximum wait time: 10 minutes (600 seconds)
 
 API_BASE_URL = "https://api.browseract.com/v2/workflow"
 
-def run_task_by_template(workflow_template_id, input_parameters, proxy_region="US"):
+def run_task_by_template(workflow_template_id, input_parameters):
     """Start a task using template"""
     headers = {
         "Authorization": f"Bearer {API_KEY}"
@@ -63,7 +58,6 @@ def run_task_by_template(workflow_template_id, input_parameters, proxy_region="U
     data = {
         "workflow_template_id": workflow_template_id,
         "input_parameters": input_parameters,
-        "proxyRegion": proxy_region,
     }
     
     api_url = f"{API_BASE_URL}/run-task-by-template"
@@ -154,8 +148,7 @@ def main():
         # Step 1: Start task using template
         print("\n📤 Step 1: Starting task using template...")
         print(f"   Template ID: {WORKFLOW_TEMPLATE_ID}")
-        print(f"   Proxy Region: {PROXY_REGION}")
-        task_id = run_task_by_template(WORKFLOW_TEMPLATE_ID, INPUT_PARAMETERS, PROXY_REGION)
+        task_id = run_task_by_template(WORKFLOW_TEMPLATE_ID, INPUT_PARAMETERS)
         
         if task_id is None:
             print("❌ Unable to start task, exiting")

@@ -77,9 +77,8 @@ python 12.get_region_list.py
 
 **Option 2: Using Official Templates** (Easier for beginners)
 1. List available templates: Run `11.list_official_workflow_templates.py` to see all templates
-2. Get region list: Run `12.get_region_list.py` to see available proxy regions
-3. Run template task: Run `9.run_task_by_template.py` with a template ID from step 1
-4. Check status: Run `3.get_task.py` or `4.get_task_status.py` to monitor progress
+2. Run template task: Run `9.run_task_by_template.py` with a template ID from step 1
+3. Check status: Run `3.get_task.py` or `4.get_task_status.py` to monitor progress
 
 **Recommended**: Start with **Scenario Examples** in `../Scenarios-Python/` directory for complete examples that combine multiple APIs.
 
@@ -144,7 +143,6 @@ Before running the examples, you need to:
    - `workflowId`: Replace `1234567890` with your actual workflow ID (for custom workflows)
    - `workflow_template_id`: Replace `"1234567890"` with your actual template ID (for template-based tasks)
    - `taskId`: Replace the actual task ID returned by `1.run_task.py` or `9.run_task_by_template.py`
-   - `proxyRegion`: Use region code from `12.get_region_list.py` (default: "US")
 
 ## API Key Security
 
@@ -170,19 +168,12 @@ BrowserAct provides official workflow templates that you can use without creatin
    ```
    This will show you all available official templates with their IDs, names, and descriptions.
 
-2. **Get region list** (for proxy configuration):
-   ```bash
-   python 12.get_region_list.py
-   ```
-   This will show you all supported regions and their codes for use with `proxyRegion` parameter.
-
-3. **Run a task using a template**:
+2. **Run a task using a template**:
    ```bash
    python 9.run_task_by_template.py
    ```
    Make sure to:
    - Set `workflow_template_id` to a template ID from step 1
-   - Set `proxyRegion` to a region code from step 2 (optional, defaults to "US")
    - Configure `input_parameters` according to the template's requirements
 
 **Note**: Template-based tasks don't support `save_browser_data` and `profile_id` parameters. These features are only available for custom workflows.
@@ -209,7 +200,6 @@ All examples include comprehensive error handling for:
 3. **API Error 401**: Check your API key and ensure it's valid
 4. **API Error 10118**: Verify the workflow ID exists and is accessible with your API key
 5. **Template Not Found**: Ensure the `workflow_template_id` is valid. Use `11.list_official_workflow_templates.py` to get available template IDs
-6. **Invalid Region Code**: Ensure the `proxyRegion` value is valid. Use `12.get_region_list.py` to get supported region codes
 
 ### Getting Help
 
