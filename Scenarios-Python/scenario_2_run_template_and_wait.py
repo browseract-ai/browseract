@@ -118,6 +118,7 @@ def get_task(task_id):
 def wait_for_task_completion(task_id):
     """Wait for task completion"""
     start_time = time.time()
+    previous_status = None
     
     print(f"\n⏳ Waiting for task completion (max wait time: {MAX_WAIT_TIME} seconds)...")
     
@@ -147,7 +148,14 @@ def wait_for_task_completion(task_id):
         else:
             # running, created, paused, etc.
             elapsed = int(elapsed_time)
-            print(f"   Status: {status} (waited {elapsed} seconds)", end="\r")
+            # If status changed, print on new line; otherwise update same line
+            if status != previous_status:
+                print()  # New line when status changes
+                print(f"   Status: {status} (waited {elapsed} seconds)", end="\r")
+                previous_status = status
+            else:
+                # Same status, update same line
+                print(f"   Status: {status} (waited {elapsed} seconds)", end="\r")
         
         # Wait before checking again
         time.sleep(POLL_INTERVAL)
