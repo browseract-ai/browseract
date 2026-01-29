@@ -80,12 +80,17 @@ def get_task_status(task_id):
     }
     
     api_url = f"{API_BASE_URL}/get-task-status?task_id={task_id}"
-    response = requests.get(api_url, headers=headers)
-    
-    if response.status_code == 200:
-        return response.json().get("status")
-    else:
-        print(f"⚠️ Failed to get task status: {response.json()}")
+    try:
+        response = requests.get(api_url, headers=headers, timeout=30)
+        
+        if response.status_code == 200:
+            return response.json().get("status")
+        else:
+            print(f"⚠️ Failed to get task status: {response.json()}")
+            return None
+    except (requests.exceptions.SSLError, requests.exceptions.ConnectionError, 
+            requests.exceptions.Timeout, requests.exceptions.RequestException) as e:
+        # Network error, will retry in next polling cycle
         return None
 
 def get_task(task_id):
@@ -95,12 +100,17 @@ def get_task(task_id):
     }
     
     api_url = f"{API_BASE_URL}/get-task?task_id={task_id}"
-    response = requests.get(api_url, headers=headers)
-    
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"⚠️ Failed to get task details: {response.json()}")
+    try:
+        response = requests.get(api_url, headers=headers, timeout=30)
+        
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print(f"⚠️ Failed to get task details: {response.json()}")
+            return None
+    except (requests.exceptions.SSLError, requests.exceptions.ConnectionError, 
+            requests.exceptions.Timeout, requests.exceptions.RequestException) as e:
+        print(f"⚠️ Network error while getting task details: {type(e).__name__}")
         return None
 
 def wait_for_task_completion(task_id):
@@ -120,7 +130,9 @@ def wait_for_task_completion(task_id):
         status = get_task_status(task_id)
         
         if status is None:
-            print("⚠️ Unable to get task status, continuing to wait...")
+            # Network error or API error, continue waiting
+            elapsed = int(elapsed_time)
+            print(f"   Network error, retrying... (waited {elapsed} seconds)", end="\r")
         elif status == "finished":
             print(f"\n✅ Task completed!")
             return "finished"
