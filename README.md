@@ -1,3 +1,15 @@
+> ## ⚠️ This repository has been deprecated
+>
+> **This repository is no longer maintained.** It has been moved to a new location:
+>
+> **➡️ [browser-act/browseract-api-examples](https://github.com/browser-act/browseract-api-examples)**
+>
+> Please use the new repository for the latest code, bug fixes, and documentation.
+>
+> This repository will remain available as a read-only archive.
+
+---
+
 # BrowserAct API Demo Collection
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
